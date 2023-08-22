@@ -1,25 +1,25 @@
 require("dotenv").config();
-require('./models/User.model')
+require("./models/User.model");
 
-const cors=require('cors')
-const userRoutes=require('./routes/User.routes')
+const cors = require("cors");
+const userRoutes = require("./routes/User.routes");
 
 const express = require("express");
 const app = express();
 
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URI + 'tienda');
+mongoose.connect(process.env.MONGO_URI + "ecommerce");
 
 const port = process.env.PORT;
 
-const corsOptions={
-    origin:process.env.FRONTEND_URL,
-    optionsSuccessStatus:200
-}
-app.use(cors(corsOptions))
-app.use(express.json())
-app.use('/users',userRoutes)
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -28,12 +28,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-//   const victor = new User({
-//     username: "Victor",
-//     lastname:"Briones",
-//     password: "victor",
-//   });
-//   victor.save();
+  //   const victor = new User({
+  //     username: "Victor",
+  //     lastname:"Briones",
+  //     password: "victor",
+  //   });
+  //   victor.save();
   res.status(200).json({
     mensaje: "ruta post",
     detail: "",
