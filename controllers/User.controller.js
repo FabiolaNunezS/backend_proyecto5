@@ -160,9 +160,16 @@ const deleteUserById = async (req, res) => {
   }
 };
 const updateUserById = async (req, res) => {
-  const { _id, userUpdated } = req.params;
+  const { _id } = req.params;
+  const { userUpdated } = req.body;
+  const { password } = userUpdated;
+  const hashedPassword = hashPassword(password);
   try {
-    const resp = await User.findByIdAndUpdate(_id, userUpdated, { new: true });
+    const resp = await User.findByIdAndUpdate(
+      _id,
+      { ...userUpdated, password: hashedPassword },
+      { new: true }
+    );
     if (resp) {
       return res.status(200).json({
         messege: "ok",
@@ -188,4 +195,5 @@ module.exports = {
   login,
   getUserById,
   deleteUserById,
+  updateUserById,
 };

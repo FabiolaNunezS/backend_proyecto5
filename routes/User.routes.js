@@ -28,4 +28,5 @@ router.get("/:_id", auth, getUserById);
 
 router.delete("/:_id", auth, deleteUserById);
 
+router.put("/:_id", auth, updateUserById);
 module.exports = router;
