@@ -3,6 +3,7 @@ require("./models/User.model");
 
 const cors = require("cors");
 const userRoutes = require("./routes/User.routes");
+const productRoutes = require("./routes/Product.routes");
 
 const express = require("express");
 const app = express();
@@ -20,6 +21,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/users", userRoutes);
+app.use("/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -28,12 +30,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  //   const victor = new User({
-  //     username: "Victor",
-  //     lastname:"Briones",
-  //     password: "victor",
-  //   });
-  //   victor.save();
   res.status(200).json({
     mensaje: "ruta post",
     detail: "",

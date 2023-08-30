@@ -1,31 +1,26 @@
 const express = require("express");
-
 const router = express.Router();
 
 const {
-  signup,
-  getProduct,
-  updateProduct,
-  deleteProduct,
-  login,
-  getProductsById,
-  deleteProductById,
-  updateProductById,
+  // updateProduct,
+  // deleteProduct,
+  getProductById,
+  // deleteProductById,
+  // updateProductById,
+  getAllProducts,
 } = require("../controllers/Product.controller");
 const auth = require("../middlewares/auth");
 
-router.get("/", getProduct);
+router.get("/", getAllProducts);
 
-router.post("/signup", signup);
+// router.put("/", updateProduct);
 
-router.put("/", updateProduct);
+// router.delete("/", deleteProduct);
 
-router.delete("/", deleteProduct);
+router.get("/dinamica/:_id", getProductById);
 
-router.post("/login", login);
+// router.delete("/:_id", auth, deleteProductById);
 
-router.get("/:_id", auth, getProductById);
-
-router.delete("/:_id", auth, deleteProductById);
+// router.put("/:_id", auth, updateProductById);
 
 module.exports = router;
