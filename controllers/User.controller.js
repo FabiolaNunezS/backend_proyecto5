@@ -187,6 +187,27 @@ const updateUserById = async (req, res) => {
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+    if (user) {
+      return res.status(200).json({
+        message: "Perfil de usuario",
+        detail: user,
+      });
+    }
+    return res.status(404).json({
+      message: "Usuario no encontrado",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error de servidor",
+      error,
+    });
+  }
+};
+
 module.exports = {
   signup,
   getUsers,
@@ -196,4 +217,5 @@ module.exports = {
   getUserById,
   deleteUserById,
   updateUserById,
+  getProfile,
 };
