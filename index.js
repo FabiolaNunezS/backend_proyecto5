@@ -12,13 +12,13 @@ const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_URI + "ecommerce");
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,
+  origin: "http://localhost:5173/, https://finalproyecto5.onrender.com",
   optionsSuccessStatus: 200,
 };
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
